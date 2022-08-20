@@ -24,16 +24,16 @@ const SignUp = () => {
     }
 
     return (
-        <main>
+        <main className="accountEnter">
             <h1>Sign Up</h1>
 
             <Form
                 title="sign up"
-                handleClick={handleSignup}
+                handleSubmit={handleSignup}
             />
 
             <p>
-                Already have an account? <Link to="/logIn">Log In</Link>
+                Already have an account? <Link to="/logIn">Sign in</Link>
             </p>
         </main>
     );

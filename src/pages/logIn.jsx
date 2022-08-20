@@ -24,12 +24,12 @@ const LogIn = () => {
   }
 
   return (
-    <main>
-      <h1>Log in</h1>
+    <main className="accountEnter">
+      <h1>Sign In</h1>
 
       <Form 
         title="sign in"
-        handleClick={handleLogin}
+        handleSubmit={handleLogin}
       />
 
       <p>

@@ -74,6 +74,54 @@ main {
     padding-top: 4rem;
 }
 
-.blue {
-    background-color: blue;
+.accountEnter {
+    height: calc(100vh - 4rem);
+    @include flex-centered();
+    flex-direction: column;
+    gap: 1rem;
+    
+    h1 {
+        margin: 0;
+        color: $primary-darkest;
+    }
+
+    form {
+        @include flex-centered();
+        flex-direction: column;
+        gap: 1rem;
+
+        input {
+            all: unset;
+            width: 100%;
+            padding: 10px;
+            color: $primary-darkest;
+            border: 1px solid $primary-darkest;
+            border-radius: 15px;
+        }
+        input:focus {
+            background-color: $lightest-blue2;
+        }
+        input[type="submit"] {
+            cursor: pointer;
+            text-align: center;
+            background-color: $lightest-blue2;
+        }
+        input[type="submit"]:hover {
+            background-color: $lightest-blue;
+        }
+    }
+
+    p {
+        margin: 0;
+    }
+    
+    a {
+        all: unset;
+        cursor: pointer;
+        color: $primary-darkest;
+    }
+    a:hover {
+        text-decoration-line: underline;
+    }
 }
+

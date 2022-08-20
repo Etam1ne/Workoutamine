@@ -1,11 +1,14 @@
 import { useState } from "react";
 
-const Form = ({title, handleClick}) => {
+const Form = ({title, handleSubmit}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
   
     return (
-      <div>
+      <form onSubmit={(e) => {
+        e.preventDefault(); 
+        handleSubmit(email, password);
+      }}>
         <input 
           type="email"
           value={email}
@@ -18,12 +21,8 @@ const Form = ({title, handleClick}) => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="password"
         />
-        <button
-            onClick={() => handleClick(email, password)}
-        >
-            {title}
-        </button>
-      </div>
+        <input type="submit" value={title} />
+      </form>
     );
   }
   
