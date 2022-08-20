@@ -1,0 +1,79 @@
+@import 'colors';
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,200;0,400;0,700;1,400&family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
+@mixin flex-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:root {
+    background-color: white;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 4rem;
+    position: fixed;
+    @include flex-centered();
+    background-color: $primary-darkblue;
+    font-family: 'Roboto Mono', monospace;
+
+    img {
+        width: 3rem;
+        position: absolute;
+    }
+
+    ul {
+        @include flex-centered();
+        width: 70%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        gap: 1rem;
+        color: white;
+
+        li {
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 200ms ease-in;
+        }
+        li:hover {
+            background-color: $lighter-darkblue;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        a:visited {
+            color: white;
+        }
+    }
+}
+
+#home-logo {
+    left: 0.5rem;
+    top: 0.5rem;
+}
+#user-profile {
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+main {
+    padding-top: 4rem;
+}
+
+.blue {
+    background-color: blue;
+}
