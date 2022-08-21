@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { setUser } from "../store/slices/userSlice";
-import { Form } from "../components/Form";
+import { Form } from "../components/form";
 import { Link } from "react-router-dom";
 
 const LogIn = () => {

@@ -2,18 +2,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { setUser } from "../store/slices/userSlice";
-import { Form } from "../components/Form";
+import { Form } from "../components/form";
 import { Link } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../firebase"
-
-async function addInfo(user, username) {
-    await addDoc(collection(db, "users"), {
-        uid: user.uid,
-        email: user.email,
-        username: username,
-    });
-}
+import { addInfo } from "../firebase"
 
 const SignUp = () => {
     const dispatch = useDispatch();

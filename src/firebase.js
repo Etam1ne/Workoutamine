@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -12,4 +13,23 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-export const db = getFirestore(app);
+const db = getFirestore(app);
+
+export async function addInfo(user, username) {
+  await addDoc(collection(db, "users"), {
+      uid: user.uid,
+      email: user.email,
+      username: username,
+  });
+}
+
+export async function getInfo() {
+  getDocs(collection(db, "users"))
+  .then((snapshot) => {
+      const users = [];
+      snapshot.docs.forEach((doc) => {
+          users.push({...doc.data(), id: doc.id })
+      })
+      console.log(users);
+  })
+}
