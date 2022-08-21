@@ -3,12 +3,23 @@ import { useState } from "react";
 const Form = ({title, handleSubmit}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
   
     return (
       <form onSubmit={(e) => {
         e.preventDefault(); 
-        handleSubmit(email, password);
+        handleSubmit(email, password, username);
       }}>
+
+        {title === "sign up" ? 
+          <input 
+            type="text" 
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+            placeholder="name"
+          />
+        : null}
+
         <input 
           type="email"
           value={email}
@@ -26,4 +37,4 @@ const Form = ({title, handleSubmit}) => {
     );
   }
   
-  export {Form};
+export {Form};
