@@ -1,40 +1,64 @@
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { setUser } from "../store/slices/userSlice";
-import { Form } from "../components/form";
 import { Link } from "react-router-dom";
-import { addInfo } from "../firebase"
+import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, registerWithEmailAndPassword, signInWithGoogle } from "../firebase"
 
 const SignUp = () => {
-    const dispatch = useDispatch();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
+    const [namecheck, setNamecheck] = useState(true);
+    const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
-
-    const handleSignup = (email, password, username) => {
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(({user}) => {
-                dispatch(setUser({
-                    email: user.email,
-                    id: user.uid,
-                    token: user.accessToken,
-                }),
-                addInfo(user ,username)
-                );
-
-                navigate('../userProfile');
-            })
-            .catch(console.error)
-    }
+    const register = () => {
+        if (!username) {
+            setNamecheck(false);
+            return;
+        }
+        registerWithEmailAndPassword(username, email, password);
+      };
+    useEffect(() => {
+      if (loading) return;
+      if (user) navigate("../userProfile")
+    });
 
     return (
         <main className="accountEnter">
             <h1>Sign Up</h1>
 
-            <Form
-                title="sign up"
-                handleSubmit={handleSignup}
-            />
+            <form onSubmit={(e) => {
+                e.preventDefault(); 
+                register();
+            }}>
+
+                <input 
+                type="text" 
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+                placeholder={namecheck? "name": "please enter name"}
+                className={namecheck? null: "red"}
+                />
+
+                <input 
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="email"
+                />
+                <input 
+                type="password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="password"
+                />
+                <input type="submit" value="Sign up" />
+                <button
+                    onClick={signInWithGoogle}
+                >
+                Use Google
+                </button>
+            </form>
 
             <p>
                 Already have an account? <Link to="/logIn">Sign in</Link>

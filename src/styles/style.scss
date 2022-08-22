@@ -90,7 +90,7 @@ main {
         flex-direction: column;
         gap: 1rem;
 
-        input {
+        button, input {
             all: unset;
             width: 100%;
             padding: 10px;
@@ -101,18 +101,21 @@ main {
         input:focus {
             background-color: $lightest-blue2;
         }
-        input[type="submit"] {
+        button, input[type="submit"] {
             cursor: pointer;
             text-align: center;
             background-color: $lightest-blue2;
         }
-        input[type="submit"]:hover {
+        button:hover, input[type="submit"]:hover {
             background-color: $lightest-blue;
         }
     }
 
     p {
         margin: 0;
+    }
+    .red {
+        background-color: $lightest-pink;
     }
     
     a {
